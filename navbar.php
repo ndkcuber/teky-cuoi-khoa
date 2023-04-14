@@ -23,7 +23,7 @@
   </div>
 </nav>
 
-<!-- Modal -->
+
 <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
@@ -31,11 +31,42 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Tìm kiếm</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body search-container">
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
         </form>
+      </div>
+      <div class="container">
+        <div id="search-results">
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  const searchInput = document.querySelector('#search-input');
+  const searchResults = document.querySelector('#search-results');
+
+  searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.trim();
+
+    if (searchTerm.length > 0) {
+      fetch(`./utils/search.php?q=${searchTerm}`)
+        .then(response => response.json())
+        .then(data => {
+          let resultsHtml = '';
+
+          data.forEach(result => {
+            resultsHtml += `<div class="search-result-item"><a href="${result.url}">${result.title}</a></div>`;
+          });
+
+          searchResults.innerHTML = resultsHtml;
+        });
+    } else {
+      searchResults.innerHTML = '';
+    }
+  });
+</script>

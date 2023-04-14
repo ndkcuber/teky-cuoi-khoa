@@ -1,7 +1,18 @@
+ <?php 
+ include './utils/database.php';
+    if (isset($_GET['id'])) {
+      $id = $_GET['id']; 
+      $sql = "SELECT * FROM data WHERE id='".$id."'";
+                $result = $db_connect->query($sql);
+                if ($result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                }
+    }
+ ?>
+
  <!DOCTYPE html>
  <html>
  <head>
- 
  <meta charset="utf-8">
  <link rel="stylesheet" type="text/css" href="/style.css">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,14 +22,22 @@
   <?php 
     include './bootstrap.html';
     include './navbar.php';
-    include './utils/database.php';
  ?>
     <div class="container">
       <div class="row m-5">
          <div class="col-md-8">
-          <h1>Tin tức thịnh thành</h1>
+          <h1>>> <?php echo $row['title']; ?></h1>
           <div class="row">
-            <?php 
+            <h5><?php echo $row['content']; ?></h5>
+            <div class="container m-4">
+              <h5 style="color: grey;">Bài viết được viết bởi: <span style="color: salmon;"><?php echo $row['author']; ?></span></h5>
+            </div>
+            <nav aria-label="Page navigation example">
+          </div>  
+        </div>
+        <div class="col-md-4">
+          <h1>Các bài viết mới liên quan</h1>
+          <?php 
                 $sql = "SELECT * FROM data WHERE 1";
                 $result = $db_connect->query($sql);
                 if ($result->num_rows > 0) {
@@ -31,13 +50,6 @@
                   echo "0 results";
                 }
              ?>
-
-            <nav aria-label="Page navigation example">
-          </div>  
-        </div>
-        <div class="col-md-4">
-          <h1>Thông báo</h1>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </div>
       </div>
      
