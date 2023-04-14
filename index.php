@@ -19,7 +19,7 @@
           <h1>Tin tức thịnh thành</h1>
           <div class="row">
             <?php 
-                $sql = "SELECT * FROM data WHERE 1";
+                $sql = "SELECT * FROM data WHERE 1 LIMIT 4";
                 $result = $db_connect->query($sql);
                 if ($result->num_rows > 0) {
                   // output data of each row

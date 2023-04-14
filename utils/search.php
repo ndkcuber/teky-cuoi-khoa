@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['q'])) {
         array_push($results, $item);
       }
   } else {
-      $results[] = array('title' => 'No results found');
+      $results[] = array('title' => 'No results found', 'url' => '#');
   }
 
   // Close database connection
