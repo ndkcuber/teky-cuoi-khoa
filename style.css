@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+	font-family: 'Inter';
+	font-weight: 500;
+}
+
+.navbar{
+	-webkit-box-shadow:0px 0px 25px 0px rgba(0,102,255,0.76);
+	-moz-box-shadow: 0px 0px 25px 0px rgba(0,102,255,0.76);
+	box-shadow: 0px 0px 25px 0px rgba(0,102,255,0.76);
+}
+
+.nav-link{
+	transition: all 200ms;
+	border-radius: 11px;
+}
