@@ -12,4 +12,4 @@ nothing
 
 ![screenshot](/demo/demo2.png)
 
-![screenshot](/demo/demo2.png)
+![screenshot](/demo/demo3.png)
