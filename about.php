@@ -1,18 +1,7 @@
- <?php 
- include './utils/database.php';
-    if (isset($_GET['id'])) {
-      $id = $_GET['id']; 
-      $sql = "SELECT * FROM data WHERE id='".$id."'";
-                $result = $db_connect->query($sql);
-                if ($result->num_rows > 0) {
-                  $row = $result->fetch_assoc();
-                }
-    }
- ?>
-
  <!DOCTYPE html>
  <html>
  <head>
+ 
  <meta charset="utf-8">
  <link rel="stylesheet" type="text/css" href="/style.css">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,23 +11,26 @@
   <?php 
     include './bootstrap.html';
     include './navbar.php';
+    include './utils/database.php';
  ?>
     <div class="container">
       <div class="row m-5">
          <div class="col-md-8">
-          <h1 class="py-3 fw-bold h1" style="color: var(--bs-warning-text-emphasis)"><?php echo $row['title']; ?></h1>
-          <div class="row">
-            <h5><?php echo $row['content']; ?></h5>
-            <div class="container m-4">
-              <h5 style="color: grey;">Bài viết được viết bởi: <span style="color: salmon;"><?php echo $row['author']; ?></span></h5>
-            </div>
-            <nav aria-label="Page navigation example">
+          <h1 class="py-3 fw-bold h1" style="color: var(--bs-warning-text-emphasis)">Về chúng tôi</h1>
+          <div class="row card">
+            <h3 class="py-3 fw-bold h5" style="color: var(--bs-success-text-emphasis)" >Điều khoản dịch vụ:</h3>
+            <p>- Đây là một trang web tin tức được lập bởi Đông Kha siêu đẹp trai</p>
+            <br>
+            <p>- Mọi thông tin đều có thể được đăng bởi tất cả người dùng, kể cả người xem</p>
+            <br>
+            <p>- Chia sẻ những thông tin của bạn tại đây</p>
+            
           </div>  
         </div>
         <div class="col-md-4">
-          <h1>Các bài viết mới liên quan</h1>
+          <h1>Xem thêm</h1>
           <?php 
-                $sql = "SELECT * FROM data WHERE 1";
+                $sql = "SELECT * FROM `data` WHERE `id` IN (SELECT `id` FROM `data` WHERE `date` = (SELECT MAX(`date`) FROM `data`)) LIMIT 4;";
                 $result = $db_connect->query($sql);
                 if ($result->num_rows > 0) {
                   // output data of each row

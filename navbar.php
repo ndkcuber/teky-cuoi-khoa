@@ -18,6 +18,9 @@
         <li class="nav-item">
           <a class="nav-link btn btn-primary m-2" aria-current="page" href="/post.php" >+ Đăng</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary m-2" aria-current="page" href="/about.php" >Về chúng tôi</a>
+        </li>
      </ul>
     </div>
   </div>
