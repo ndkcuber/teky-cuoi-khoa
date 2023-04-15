@@ -36,6 +36,10 @@
 	z-index: 100;
 }
 
+.each-all-item:hover{
+	background: #416EFE;
+}
+
 .search-result-item a{
 	text-decoration: none;
 }

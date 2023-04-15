@@ -17,7 +17,7 @@
       <div class="row m-5">
          <div class="col-md-8">
           <h1 class="py-3 fw-bold h1" style="color: var(--bs-warning-text-emphasis)">Về chúng tôi</h1>
-          <div class="row card">
+          <div class="row card mb-4">
             <h3 class="py-3 fw-bold h5" style="color: var(--bs-success-text-emphasis)" >Điều khoản dịch vụ:</h3>
             <p>- Đây là một trang web tin tức được lập bởi Đông Kha siêu đẹp trai</p>
             <br>
@@ -25,26 +25,43 @@
             <br>
             <p>- Chia sẻ những thông tin của bạn tại đây</p>
             
+          </div> 
+
+          <div class="row card">
+            <h3 class="py-3 fw-bold h5" style="color: var(--bs-success-text-emphasis)" >Thống kê:</h3>
+            <h3 class="py-3 fw-bold h5" > - Tổng cộng 
+              <span style="color: var(--bs-success-text-emphasis)">
+                <?php 
+                $sql_x = "SELECT COUNT(*) FROM `data`";
+                $result_x = $db_connect->query($sql_x);
+                $count = mysqli_fetch_row($result_x)[0];
+                echo $count;
+              ?> 
+              </span>
+              
+
+              bài viết
+             </h3>
+            
           </div>  
         </div>
         <div class="col-md-4">
-          <h1>Xem thêm</h1>
+          <h1 class="py-3 fw-bold h1" style="color: var(--bs-primary-text-emphasis)">Xem thêm</h1>
           <?php 
-                $sql = "SELECT * FROM `data` WHERE `id` IN (SELECT `id` FROM `data` WHERE `date` = (SELECT MAX(`date`) FROM `data`)) LIMIT 4;";
+                $sql = "SELECT * FROM `data` ORDER BY id DESC LIMIT 4";
                 $result = $db_connect->query($sql);
                 if ($result->num_rows > 0) {
                   // output data of each row
-                  for ($x = 0; $x < 4; $x += 1){
-                      $row = $result->fetch_assoc();
+                  while ($row = $result->fetch_assoc()){
                       echo "<div class=\"card m-2\" style=\"width: 18rem;\"><img src=\"/files/thumbnail.jpg\" class=\"card-img-left\" alt=\"title\"><div class=\"card-body\"><a class=\"card-text\" href=\"/read.php?id=".$row['id']."\">".$row['title']."</a></div></div>";
                     }
                 } else {
-                  echo "0 results";
+                  echo "0 bài viết";
                 }
              ?>
         </div>
       </div>
-     
+      
     </div>
  </body>
  <div class="container footer">

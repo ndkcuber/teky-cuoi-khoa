@@ -36,7 +36,7 @@
           </div>  
         </div>
         <div class="col-md-4">
-          <h1>Các bài viết mới liên quan</h1>
+          <h1 class="py-3 fw-bold h1" style="color: var(--bs-primary-text-emphasis)">Các bài viết mới liên quan</h1>
           <?php 
                 $sql = "SELECT * FROM data WHERE 1";
                 $result = $db_connect->query($sql);

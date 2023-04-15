@@ -16,15 +16,15 @@
     <div class="container">
       <div class="row m-5">
          <div class="col-md-8">
-          <h1 class="py-3 fw-bold h1" style="color: var(--bs-warning-text-emphasis)">Tin tức thịnh thành</h1>
-          <div class="row">
+          <h1 class="py-3 fw-bold h1" style="color: var(--bs-warning-text-emphasis)">Tất cả bài viết</h1>
+          <div class="container">
             <?php 
-                $sql = "SELECT * FROM `data` ORDER BY id DESC LIMIT 4";
+                $sql = "SELECT * FROM `data` ORDER BY id DESC";
                 $result = $db_connect->query($sql);
                 if ($result->num_rows > 0) {
                   // output data of each row
                   while($row = $result->fetch_assoc()){
-                      echo "<div class=\"card m-2\" style=\"width: 18rem;\"><img src=\"/files/thumbnail.jpg\" class=\"card-img-left\" alt=\"title\"><div class=\"card-body\"><a class=\"card-text\" href=\"/read.php?id=".$row['id']."\">".$row['title']."</a></div></div>";
+                      echo "<div class=\"card each-all-item\" ><div class=\"card-body\"><a class=\"card-text\" href=\"/read.php?id=".$row['id']."\">".$row['title']."</a></div></div><br>";
                     }
                 } else {
                   echo "0 results";

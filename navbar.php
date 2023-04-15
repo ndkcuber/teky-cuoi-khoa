@@ -16,10 +16,13 @@
 </svg></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-primary m-2" aria-current="page" href="/post.php" >+ Đăng</a>
+          <a class="nav-link btn btn-primary m-2" aria-current="page" href="/post.php" >Đăng bài</a>
         </li>
         <li class="nav-item">
           <a class="nav-link btn btn-primary m-2" aria-current="page" href="/about.php" >Về chúng tôi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary m-2" aria-current="page" href="/all.php" >Tất cả bài viết</a>
         </li>
      </ul>
     </div>
