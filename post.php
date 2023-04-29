@@ -21,7 +21,9 @@
       $sql = "INSERT INTO `data`(`title`, `content`, `author`) VALUES ('".$title."','".$content."','".$author."')";
       $result = $db_connect->query($sql);
       if ($result) {
-      	echo "<script>alert('Đăng bài thành công!')</script>";
+      	echo "<script>Swal.fire('Đã đăng bài','Bài viết của bạn đã được đăng','success')</script>";
+      } else{
+        echo "<script>Swal.fire('Thất bại','Có lỗi xảy ra, vui lòng thử lại','error')</script>";
       }
 
     }
