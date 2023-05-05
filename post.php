@@ -22,8 +22,10 @@
       $result = $db_connect->query($sql);
       if ($result) {
       	echo "<script>Swal.fire('Đã đăng bài','Bài viết của bạn đã được đăng','success')</script>";
+        $_COOKIE['author'] = $author;
       } else{
         echo "<script>Swal.fire('Thất bại','Có lỗi xảy ra, vui lòng thử lại','error')</script>";
+        $_COOKIE['author'] = $author;
       }
 
     }
@@ -44,7 +46,9 @@
 	            	<div class="mb-2">
 	            		<label for="author"></label>
 	            		<h3 class="py-3 fw-semibold h3" style="color: var(--bs-info-text-emphasis)">Tác giả</h3>
-	            		<input class="form-control" type="search" placeholder="Tên tác giả" name="author" required>
+	            		<input class="form-control" type="search" placeholder="Tên tác giả" name="author" value="<?php if (isset($_COOKIE['author'])) {
+                    echo $_COOKIE['author'];
+                  } ?>" required>
 	            	</div>
 	            	<div class="mb-2">
 	            		<label for="noidung"></label>
