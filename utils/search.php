@@ -3,7 +3,7 @@
 include "database.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['q'])) {
-  $searchTerm = $_GET['q'];
+  $searchTerm = filter_var($_GET['q'],FILTER_SANITIZE_SPECIAL_CHARS);
 
   // Get search query from form input
   if (isset($_GET['q'])) {
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['q'])) {
         array_push($results, $item);
       }
   } else {
-      $results[] = array('title' => 'No results found', 'url' => '#');
+      $results[] = array('title' => 'Không tìm thấy kết quả phù hợp cho '.$searchTerm.'', 'url' => '#');
   }
 
   // Close database connection

@@ -1,4 +1,17 @@
- <?php 
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <meta charset="utf-8">
+ <link rel="stylesheet" type="text/css" href="/style.css">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body data-bs-theme="dark">
+  <?php 
+    include './bootstrap.html';
+    include './navbar.php';
+ ?>
+
+  <?php 
  include './utils/database.php';
     if (isset($_GET['id'])) {
       $id = $_GET['id']; 
@@ -6,23 +19,22 @@
                 $result = $db_connect->query($sql);
                 if ($result->num_rows > 0) {
                   $row = $result->fetch_assoc();
+                } else{
+                  echo "<script>Swal.fire({icon: 'error',title: 'Ôi không!',text: 'ID bài viết không tồn tại hoặc đã bị xóa!', allowOutsideClick: false}).then((result) => {
+  if (result.isConfirmed) {
+    window.location = 'index.php';
+  }
+})</script>";
                 }
+    } else{
+      echo "<script>Swal.fire({icon: 'error',title: 'Ôi không!',text: 'ID bài viết không tồn tại hoặc đã bị xóa!', allowOutsideClick: false}).then((result) => {
+  if (result.isConfirmed) {
+    window.location = 'index.php';
+  }
+})</script>";
     }
  ?>
-
- <!DOCTYPE html>
- <html>
- <head>
- <meta charset="utf-8">
- <link rel="stylesheet" type="text/css" href="/style.css">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <title></title>
-
-<body data-bs-theme="dark">
-  <?php 
-    include './bootstrap.html';
-    include './navbar.php';
- ?>
+  <title><?php echo $row['title']; ?></title>
     <div class="container">
       <div class="row m-5">
          <div class="col-md-8">
@@ -38,7 +50,7 @@
         <div class="col-md-4">
           <h1 class="py-3 fw-bold h1" style="color: var(--bs-primary-text-emphasis)">Các bài viết mới liên quan</h1>
           <?php 
-                $sql = "SELECT * FROM data WHERE 1";
+                $sql = "SELECT * FROM `data` ORDER BY id DESC LIMIT 4";
                 $result = $db_connect->query($sql);
                 if ($result->num_rows > 0) {
                   // output data of each row

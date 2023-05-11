@@ -38,7 +38,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body search-container">
-        <form class="d-flex" role="search">
+        <form class="d-flex" role="search" action="javascript:void(0);">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
         </form>
       </div>
